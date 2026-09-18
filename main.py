@@ -47,16 +47,22 @@ def get_ocr():
             use_angle_cls=True,
             lang='en',
             show_log=False,
-            # Speed Optimizations
-            det_limit_side_len=960,
-            rec_batch_num=16,
-            max_batch_size=16,
-            # Accuracy Optimizations
-            det_db_thresh=0.3,
-            det_db_box_thresh=0.6,
-            det_db_unclip_ratio=1.5,
-            use_dilation=False,
-            det_db_score_mode='fast',
+            # Server Model for Best Accuracy
+            det_model_dir=None,
+            rec_model_dir=None,
+            # Maximum Detection
+            det_limit_side_len=1280,
+            rec_batch_num=32,
+            max_batch_size=32,
+            # Better Detection Thresholds
+            det_db_thresh=0.2,
+            det_db_box_thresh=0.4,
+            det_db_unclip_ratio=2.0,
+            use_dilation=True,
+            det_db_score_mode='slow',
+            # Text Detection
+            det_db_box_size=500,
+            det_db_max_side_len=960,
         )
     return ocr_engine
 
