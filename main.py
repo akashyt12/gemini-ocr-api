@@ -30,6 +30,7 @@ app.add_middleware(
 )
 
 GEMINI_KEY = os.environ.get("GEMINI_KEY", "")
+import pytesseract
 
 # ============================================
 # ENGINE 1: GEMINI VISION (100% Accuracy)
@@ -90,7 +91,6 @@ def gemini_vision_ocr(image: Image.Image) -> dict:
 # ============================================
 def tesseract_ocr(image: Image.Image) -> dict:
     try:
-        import pytesseract
         if image.mode != 'RGB':
             image = image.convert('RGB')
 
